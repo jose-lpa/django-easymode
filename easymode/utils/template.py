@@ -18,9 +18,9 @@ def find_template_path(name):
         template_source_loaders = tuple(loaders)
     for loader in template_source_loaders:
         try:
-            template, _ = loader(name)
-            if template:
-                return template.nodelist[0].source[0].name
+            _, display_name = loader(name)
+            if display_name:
+                return display_name
         except TemplateDoesNotExist:
             pass
     raise TemplateDoesNotExist(name)
